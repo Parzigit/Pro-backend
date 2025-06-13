@@ -1,44 +1,34 @@
+# Node.js (React)
 node_modules/
-.env
-.DS_Store
 dist/
-.venv
-.__pycache
-*__pycache
-*.pyc
-*.pyo
-*.pyd
+build/
+.env
+
+# Python
+.venv/
+__pycache__/
+*.py[cod]
 *.pyi
+*.pyd
 *.pyw
 *.pyz
-*.egg-info
+
+# Python Packaging
+*.egg-info/
 *.egg
 *.manifest
 *.spec
 *.whl
-*.dist-info
+*.dist-info/
 *.dist
-*.egg-info
-*.egg
-*.manifest
-*.spec
-*.whl
-*.dist-info
-*.dist
-*.egg-info
-*.egg
-*.manifest
-*.spec
-*.whl
-*.dist-info
-*.dist
-*.egg-info
-*.egg
-*.manifest
-*.spec
-*.whl
-*.dist-info
-*.dist
-*.egg-info
-*.egg
-.vectorstores
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# PDF Vector Store
+.vectorstores/
