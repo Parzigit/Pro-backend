@@ -1,5 +1,5 @@
 import rq.timeouts
-rq.timeouts.DEATH_PENALTY_CLASS = None  # 💥 disables SIGALRM timeout death penalty
+rq.timeouts.DEATH_PENALTY_CLASS = None  
 print("Death penalty class:", rq.timeouts.DEATH_PENALTY_CLASS)
 import os, fitz, faiss, pickle
 from redis import Redis
@@ -32,5 +32,5 @@ def process_pdf(path, file_id):
 if __name__ == '__main__':
     with Connection(redis_conn):
         q = Queue('pdf-tasks')
-        worker = WindowsWorker([q], connection=redis_conn)  # Changed here
+        worker = WindowsWorker([q], connection=redis_conn)  
         worker.work()
