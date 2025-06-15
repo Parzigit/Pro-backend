@@ -1,5 +1,5 @@
 # ProtonPDF
-ProtonPDF is a PDF reader that lets users upload, view, and chat using an AI chatbot. Powered by React tools and TinyLlama/TinyLlama-1.1B-Chat-v1.0 LLM, it contextualizes the understanding of documents without reading them fully.
+ProtonPDF is a PDF reader that lets users upload, view, and chat using an AI chatbot. Powered by React tools and ~~TinyLlama/TinyLlama-1.1B-Chat-v1.0~~ meta-llama/llama-4-scout-17b-16e-instruct LLM using GROQ_API_KEY , it contextualizes the understanding of documents without reading them fully.
 
 ## Features
 
@@ -43,6 +43,7 @@ npm install (Or download from requirements.txt )
 ## To run the App
 npm start
 
-"Can,
-Integrate a larger LLM (e.g., LLaMA 3)"
+~~``"Can,
+Integrate a larger LLM (e.g., LLaMA 3)"``~~
+``DID``
 
