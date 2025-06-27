@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
 from redis import Redis
 from rq import Queue
-import uuid, shutil, os
+import uuid, tempfile, shutil, os
 from worker import process_pdf
 from qa import answer_question 
 
@@ -15,17 +15,17 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-redis_conn = Redis()
+redis_url = os.getenv("REDIS_URL", "redis://localhost:6379")
+redis_conn = Redis.from_url(redis_url)
 task_queue = Queue('pdf-tasks', connection=redis_conn)
 
 @app.post("/upload")
 async def upload_pdf(file: UploadFile = File(...)):
-    file_id = str(uuid.uuid4())
-    path = f"./uploads/{file_id}.pdf"
-    os.makedirs("./uploads", exist_ok=True)
-    with open(path, "wb") as buffer:
-        shutil.copyfileobj(file.file, buffer)
-    job = task_queue.enqueue(process_pdf, path, file_id) 
+    file_id = str(uuid.uuid4())    
+    with tempfile.NamedTemporaryFile(delete=True, suffix=".pdf") as tmp:
+        shutil.copyfileobj(file.file, tmp)
+        tmp.flush()  
+        job = task_queue.enqueue(process_pdf, tmp.name, file_id)
     return {"job_id": file_id}
 
 @app.get("/ask")
