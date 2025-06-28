@@ -8,7 +8,7 @@
       {
         "src": "worker.py",
         "use": "@railway/python",
-        "name": "RQ Worker"
+        "name": "rq Worker"
       }
     ]
   }
