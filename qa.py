@@ -8,7 +8,7 @@ from sentence_transformers import SentenceTransformer
 load_dotenv()
 genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 
-model = genai.GenerativeModel("gemini-pro")
+model = genai.GenerativeModel("gemini-1.5-flash")
 
 embedder = SentenceTransformer('all-MiniLM-L6-v2')
 
@@ -30,7 +30,7 @@ def answer_question(job_id, question):
         Question: {question}
         Instructions:
         - Answer based only on the above context.
-        - If asked for specific content (like "100 lines"), extract and return that many lines from context if possible.
+        - If asked for specific content (like "100 lines"), extract and return that many SRTICTLY lines from context.
         - If the question is straightforward, give a short or one-word answer.
         - If the document doesn't contain the answer, say "Not mentioned in the document."
         """
